@@ -43,7 +43,7 @@
 
 /* ---- Reset / base ---- */
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; scroll-padding-top: 75px; }
 body {
   margin: 0;
   font-family: var(--body);
@@ -97,6 +97,7 @@ p { margin: 0 0 1rem; }
   color: var(--fg);
   border: 2px solid var(--bg);
   cursor: pointer;
+  touch-action: manipulation;
   transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
 }
 .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-sm); }
@@ -183,6 +184,7 @@ p { margin: 0 0 1rem; }
   background: none; border: 0; cursor: pointer;
   width: 44px; height: 44px;
   border-radius: 10px;
+  touch-action: manipulation;
 }
 .nav-toggle span, .nav-toggle span::before, .nav-toggle span::after {
   content: ""; display: block; width: 24px; height: 2px; background: var(--maroon);
@@ -191,8 +193,8 @@ p { margin: 0 0 1rem; }
 .nav-toggle span::before { transform: translateY(-7px); }
 .nav-toggle span::after  { transform: translateY(5px); }
 .nav-toggle[aria-expanded="true"] span { background: transparent; }
-.nav-toggle[aria-expanded="true"] span::before { transform: rotate(45deg); }
-.nav-toggle[aria-expanded="true"] span::after  { transform: rotate(-45deg) translateY(-2px); }
+.nav-toggle[aria-expanded="true"] span::before { transform: translateY(7px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span::after  { transform: translateY(-5px) rotate(-45deg); }
 
 /* ==========================================================================
    Hero
@@ -389,7 +391,7 @@ p { margin: 0 0 1rem; }
 .cta-band {
   background:
     linear-gradient(120deg, rgba(26,42,108,.92), rgba(92,20,30,.92)),
-    url("https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1600&q=80") center/cover fixed;
+    url("https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1600&q=80") center/cover;
   color: #fff; text-align: center;
 }
 .cta-band h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); color: #fff; }
@@ -424,9 +426,24 @@ p { margin: 0 0 1rem; }
 .float-btn {
   width: 54px; height: 54px; border-radius: 50%; display: grid; place-items: center;
   box-shadow: 0 10px 24px -8px rgba(0,0,0,.45); transition: transform .18s;
+  touch-action: manipulation;
 }
 .float-btn:hover { transform: scale(1.08); }
 .float-btn svg { width: 26px; height: 26px; fill: #fff; }
+
+/* ==========================================================================
+   Nav overlay (mobile)
+   ========================================================================== */
+.nav-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.45);
+  z-index: 54;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.nav-overlay.show { display: block; }
 .float-wa { background: #25D366; }
 .float-call { background: var(--maroon); }
 
@@ -458,12 +475,12 @@ p { margin: 0 0 1rem; }
   .gallery-grid.preview { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 600px) {
+  .topbar { display: none; }
   .hero-strip .container { grid-template-columns: 1fr 1fr; gap: 1.2rem .5rem; }
   .grid-2 { grid-template-columns: 1fr; }
   .values { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; }
   .gallery-grid.preview { grid-template-columns: 1fr; }
-  .topbar .topbar-contacts { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
