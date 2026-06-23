@@ -8,18 +8,28 @@
   const toggle = document.querySelector(".nav-toggle");
   const nav = document.getElementById("primary-nav");
   if (toggle && nav) {
+    const overlay = document.createElement("div");
+    overlay.className = "nav-overlay";
+    document.body.appendChild(overlay);
+
+    function closeNav() {
+      nav.classList.remove("open");
+      toggle.setAttribute("aria-expanded", "false");
+      document.body.style.overflow = "";
+      overlay.classList.remove("show");
+    }
+
     toggle.addEventListener("click", function () {
       const open = nav.classList.toggle("open");
       toggle.setAttribute("aria-expanded", String(open));
       document.body.style.overflow = open ? "hidden" : "";
+      overlay.classList.toggle("show", open);
     });
-    // close when a link is tapped
+
+    overlay.addEventListener("click", closeNav);
+
     nav.querySelectorAll("a").forEach(function (a) {
-      a.addEventListener("click", function () {
-        nav.classList.remove("open");
-        toggle.setAttribute("aria-expanded", "false");
-        document.body.style.overflow = "";
-      });
+      a.addEventListener("click", closeNav);
     });
   }
 
