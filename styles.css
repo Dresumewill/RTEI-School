@@ -201,8 +201,8 @@ p { margin: 0 0 1rem; }
   color: #fff;
   /* EDIT HERE: swap the photo URL for a real picture of RTEI pupils */
   background:
-    linear-gradient(105deg, rgba(92,20,30,.94) 0%, rgba(92,20,30,.78) 45%, rgba(26,42,108,.55) 100%),
-    url("https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=1600&q=80") center/cover;
+    linear-gradient(105deg, rgba(92,20,30,.88) 0%, rgba(92,20,30,.65) 45%, rgba(26,42,108,.45) 100%),
+    url("images/hero.jpg") center/cover;
 }
 .hero-inner { padding: clamp(3.5rem, 9vw, 6.5rem) 0; max-width: 720px; }
 .hero .pill {
